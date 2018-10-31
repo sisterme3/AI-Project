@@ -1,4 +1,6 @@
 from tkinter import *
+import random
+import numpy
 
 
 root = Tk()
@@ -14,7 +16,7 @@ label.pack()
 
 #function that will create the board 3x3 (really easy)
 
-def CreateBoard():
+def createBoard():
     grid = [[1] * 4 for n in range(4)]
     root.geometry("800x600")
     canvas = Canvas(root, width=400, height=400)
@@ -31,10 +33,11 @@ def CreateBoard():
 
     "Fills the board and squares with values/dominoes"
 def fillBoard():
+    #random.sample()
 
     "Resets current board"
 def resetBoard():
-
+    createBoard()
     "This will create a harder board 5x5 and the upcoming functions will increase difficulty"
 def createBoardHard():
 
@@ -56,7 +59,7 @@ def solveBoard():
 #button one will be bound to two functions one that creates the board and the other
 #that fills the board with numbers/dominoes"""
 
-button1 = Button(topFrame, text="Start", fg="red", command=CreateBoard)
+button1 = Button(topFrame, text="Start", fg="red", command=createBoard)
 button2 = Button(topFrame, text="Reset", fg="green")
 button3 = Button(topFrame, text="Solve", fg="blue")
 button1.pack(side=LEFT)
