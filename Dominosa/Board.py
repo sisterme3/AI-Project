@@ -30,7 +30,7 @@ def createBoard():
         y = y+w
         x = 0
         canvas.pack()
-
+    #fillBoard()
     "Fills the board and squares with values/dominoes"
 def fillBoard():
     #random.sample()
