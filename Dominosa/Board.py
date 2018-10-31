@@ -29,32 +29,32 @@ def CreateBoard():
         x = 0
         canvas.pack()
 
-"""
-_fills the board and squares with values/dominoes
-###def FillBoard():
+    "Fills the board and squares with values/dominoes"
+def fillBoard():
 
-_resets current board
-###def ResetBoard():
+    "Resets current board"
+def resetBoard():
 
-_this will create a harder board 5x5 and the upcoming functions will increase difficulty
-###def CreateBoardHard():
+    "This will create a harder board 5x5 and the upcoming functions will increase difficulty"
+def createBoardHard():
 
-_8x8 board
-###def CreateBoardVeryhard():
-_25x25 board
-###def CreateBoardImpossible():
+    "8x8 board"
+def createBoardVeryhard():
 
-_function that will darken the clicked dominoes
-###def HighlightDominoes():
+    "25x25 board"
+def createBoardImpossible():
 
-_this function will let the AI solve the board for the player.  a CSP algorithm will be used
- is a must
-###def SolveBoard():
+    "Function that will darken the clicked dominoes"
+def highlightDominoes():
+
+    "This function will let the AI solve the board for the player.  a CSP algorithm will be used"
+
+def solveBoard():
 
 
-_buttons for GUI
-button one will be bound to two functions one that creates the board and the other
-that fills the board with numbers/dominoes"""
+    "_Buttons for GUI"
+#button one will be bound to two functions one that creates the board and the other
+#that fills the board with numbers/dominoes"""
 
 button1 = Button(topFrame, text="Start", fg="red", command=CreateBoard)
 button2 = Button(topFrame, text="Reset", fg="green")
