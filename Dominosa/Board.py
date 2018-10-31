@@ -1,3 +1,6 @@
+
+"Run class of Dominosa. "
+"WIll contain the basics of building a board and arranging numbers."
 from tkinter import *
 import random
 import numpy
