@@ -17,6 +17,10 @@ from array import *
 
 #Let Omar do the Thingy
 
+#Possible domino pieces
+
+#Board and board solution library
+
 
 def mainmenu():
     game_active = True
