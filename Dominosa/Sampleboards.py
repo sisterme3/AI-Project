@@ -1,8 +1,12 @@
 import numpy as np
 from array import *
 
-# Failsafes!!!
+#Possible domino pieces
+#def printvalidchoices():
 
+
+# Failsafes!!!
+#if statements that don't break anything
 #Get Mainmenu to completely work!
 
 #Find a symbols for dominos
@@ -11,13 +15,15 @@ from array import *
 
 #Find a way to validate domino placement
 
+#def validplaces():
+
+
 #Figure out and complete intellegent parts
 
-#Find dominosa puzzles with solutions!!
+
 
 #Let Omar do the Thingy
 
-#Possible domino pieces
 
 #Board and board solution library
 
@@ -189,6 +195,7 @@ def play(pboard, name):
 
 
 
+
 bob =            [[0,0,0,3,2],
                   [2,3,2,3,3],
                   [0,3,1,1,1],
@@ -212,7 +219,9 @@ joes = [[2,3,2,2,1],
                    [0,3,3,1,0],
                    [0,3,1,0,2], ]
 
-mainmenu()
+#List of tuples
+#Figure out how to make a list of tuples
 
-
-
+list_a = [1, 2, 3, 4]
+list_b = [5, 6, 7, 8]
+zip(list_a,list_b)

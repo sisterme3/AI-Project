@@ -1,7 +1,7 @@
 """CSP (Constraint Satisfaction Problems) problems and solvers. (Chapter 6)."""
 
 from utils import argmin_random_tie, count, first
-import search
+import search.py
 
 from collections import defaultdict
 from functools import reduce
