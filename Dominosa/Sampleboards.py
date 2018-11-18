@@ -27,9 +27,37 @@ from array import *
 
 #Board and board solution library
 
+bob =            [[0,0,0,3,2],
+                  [2,3,2,3,3],
+                  [0,3,1,1,1],
+                   [1,0,2,2,1],
+    ]
+
+carl =            [[0,3,2,1,1],
+                   [3,0,0,0,0],
+                   [3,1,1,1,2],
+                   [2,3,2,3,2],
+    ]
+
+solution_carl =   [["▶","◀","▼","▶","◀"],
+                   ["▼","▼","▲","▶","◀"],
+                   ["▲","▲","▼","▼","▼"],
+                   ["▶","◀","▲","▲","▲"],
+    ]
+
+joe = [[2,3,2,2,1],
+           [1,1,0,2,3],
+           [0,3,3,1,0],
+           [0,3,1,0,2], ]
+
+
+joes = [[2,3,2,2,1],
+                   [1,1,0,2,3],
+                   [0,3,3,1,0],
+                   [0,3,1,0,2], ]
 
 def mainmenu():
-    game_active = True
+    menu = True
     print("Hello! Welcome to Dominosa!!")
     print("What would you like to do!?")
     print("  ")
@@ -45,11 +73,11 @@ def mainmenu():
     print("    ")
     print("6. Play a Random board")
     print("    ")
-    print("Type quit if you want to exit")
+    print("7. Exit")
     print("    ")
     selection = input("Please enter your selection!       ")
 
-    while selection != quit:
+    while(menu):
         if int(selection) == 1:
             print("       ")
             print("Okay, pick a board")
@@ -62,61 +90,57 @@ def mainmenu():
             print("          ")
             print("Joe(Easy)")
             prettyprintboards(joe)
-            boardchoice = input("Select your board")
+            boardchoice = input("Select your board: ")
             boardselect(boardchoice)
             break
         elif int(selection) == 2:
             description()
-            boardchoice = input("Type 0 to return to the main menu")
-            print("Type 0 to go back.")
-            break
 
         elif int(selection) == 3:
             print("       ")
             howtoplay()
-            print("Type 0 to go back.")
-            boardchoice = input("Type 0 to return to the main menu")
 
         elif int(selection) == 4:
             print("       ")
-            print("Get ready to be amazed. What board do you want the computer to play>")
-            print("Type 0 to go back.")
+            print("Get ready to be amazed. What board do you want the computer to play")
+            choice = input("Type 0 to return to the main menu")
+            if int(choice) == 0:
+                mainmenu()
             break
 
         elif int(selection) == 5:
             print("       ")
             print("Versus! Okay, pick a board to play!")
-            print("Type 0 to go back.")
+            choice = input("Type 0 to return to the main menu")
+            if int(choice) == 0:
+                mainmenu()
             break
 
         elif int(selection) == 6:
             print("       ")
             print("Get Ready......")
-            print("Type 0 to go back.")
+            choice = input("Type 0 to return to the main menu")
+            if int(choice) == 0:
+                mainmenu()
             break
 
     #if selection.type() is str:
     #   print("Incorrect input! Try again, silly")
 
-        elif int(selection) >= 7:
+        elif int(selection) >= 8:
             print("       ")
             print("Incorrect input! Try again, silly!")
+            mainmenu()
             break
 
-        elif int(selection) == 0:
-            print("Hello! Welcome to Dominosa!!")
-            print("What would you like to do!?")
-            print("  ")
-            print("1. Play.")
-            print("   ")
-            print("2. Instructions.")
-            print("     ")
-            print("3. Watch the computer play.")
-            print("     ")
-            print("4. Play against the computer.")
-            print("    ")
-            print("5. Play a Random board")
+        elif int(selection) == 7:
+            menu = False
             print("       ")
+            print("Goodbye!! Come back soon!!")
+            break
+
+
+
 
 #if selection.type() is float:
  #   print("Incorrect input! Try again, silly!")
@@ -128,9 +152,23 @@ def prettyprintboards(array):
             print(c, end=" ")
         print()
 
-def placedomino(x, y,array1):
-    array1[int(x)][int(y)] = "▼"
-    prettyprintboards(array1)
+def placedomino(x, y,w,v,array1):
+    if x == w and y<v:
+     array1[int(x)][int(y)] = "▶"
+     array1[int(w)][int(v)] = "◀"
+     prettyprintboards(array1)
+    elif x == w and y > v:
+        array1[int(x)][int(y)] = "◀"
+        array1[int(w)][int(v)] = "▶"
+        prettyprintboards(array1)
+    elif y==v and x<w:
+        array1[int(x)][int(y)] = "▼"
+        array1[int(w)][int(v)] = "▲"
+        prettyprintboards(array1)
+    elif y==v and x>w:
+        array1[int(x)][int(y)] = "▲"
+        array1[int(w)][int(v)] = "▼"
+        prettyprintboards(array1)
 
 def description():
     print("       ")
@@ -139,7 +177,9 @@ def description():
     print("The rules are simple. You have to find the location of all dominoes on the grid. "
           "A domino is a pair of numbers."
           " You can have only one of each pair.")
-
+    choice = input("Type 0 to return to the main menu")
+    if int(choice) == 0:
+        mainmenu()
 
 def howtoplay():
     print("Playing Dominosa consists of 5 easy steps.")
@@ -148,19 +188,22 @@ def howtoplay():
     print("3. Enter the y values of where you want to place your first domino half ")
     print("4. Repeat 2 and 3 for the second half.")
     print("5. Rinse and repeat!")
+    choice = input("Type 0 to return to the main menu")
+    if int(choice) == 0:
+        mainmenu()
 
 def boardselect(board):
-    if board == "bob":
+    if board.lower() == "bob":
         name=board
         prettyprintboards(bob)
         play(bob, name)
 
-    if board == "carl":
+    if board.lower() == "carl":
         name = board
         prettyprintboards(carl)
         play(carl, name)
 
-    if board == "joe":
+    if board.lower() == "joe":
         name = board
         prettyprintboards(joe)
         play(joe, name)
@@ -168,8 +211,15 @@ def boardselect(board):
 
 def printSolution(board):
     if board == "joe":
+        prettyprintboards(joe)
         prettyprintboards(joes)
         print("Oooooh so close!")
+    if board.lower() == "carl":
+        print("Here is what you had...")
+        prettyprintboards(carl)
+        print("Here is the solution!")
+        prettyprintboards(solution_carl)
+        print("Awww, you could do better than that!!!")
 
 def play(pboard, name):
     play = True
@@ -178,11 +228,10 @@ def play(pboard, name):
         print("Where do you want to lay your first domino half?")
         choicex = input("Enter the x value")
         choicey = input("Enter the y value")
-        placedomino(choicex, choicey, pboard)
         print("Where do you want to lay your second domino half?")
-        choicex = input("Enter the x value")
-        choicey = input("Enter the y value")
-        placedomino(choicex, choicey, pboard)
+        choicew = input("Enter the x value")
+        choicev = input("Enter the y value")
+        placedomino(choicex, choicey, choicew, choicev,pboard)
         response =input("Do you want to give up?")
         if(response == "y"):
             printSolution(name);
@@ -195,29 +244,7 @@ def play(pboard, name):
 
 
 
-
-bob =            [[0,0,0,3,2],
-                  [2,3,2,3,3],
-                  [0,3,1,1,1],
-                   [1,0,2,2,1],
-    ]
-
-carl = [[0,2,0,1,1],
-                   [0,2,0,3,2],
-                   [3,3,3,2,1],
-                   [3,0,1,2,1],
-    ]
-
-joe = [[2,3,2,2,1],
-           [1,1,0,2,3],
-           [0,3,3,1,0],
-           [0,3,1,0,2], ]
-
-
-joes = [[2,3,2,2,1],
-                   [1,1,0,2,3],
-                   [0,3,3,1,0],
-                   [0,3,1,0,2], ]
+mainmenu()
 
 #List of tuples
 #Figure out how to make a list of tuples
