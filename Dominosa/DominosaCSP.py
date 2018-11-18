@@ -11,4 +11,4 @@ e.display(e.infer_assignment())
 
 AC3(e); e.display(e.infer_assignment())
 h = Dominosa(harder1)
-backtracking_search(h, select_unassigned_variable=mrv, inference=forward_checking) is not None
+print(backtracking_search(h, select_unassigned_variable=mrv, inference=forward_checking) is not None)
