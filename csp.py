@@ -50,7 +50,9 @@ class CSP(search.Problem):
 
     def __init__(self, variables, domains, neighbors, constraints):
         "Construct a CSP problem. If variables is empty, it becomes domains.keys()."
-        variables = variables or list(domains.keys())
+        variables = variables or list(
+
+        )
 
         self.variables = variables
         self.domains = domains
