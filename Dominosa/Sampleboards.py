@@ -1,15 +1,12 @@
 import numpy as np
 from array import *
-
+from boardlibrary import bob, carl, joe, joes, solution_carl
 #Possible domino pieces
 #def printvalidchoices():
 
 
 # Failsafes!!!
 #if statements that don't break anything
-#Get Mainmenu to completely work!
-
-#Find a symbols for dominos
 
 #Find a better way to put down dominos
 
@@ -17,44 +14,14 @@ from array import *
 
 #def validplaces():
 
-
 #Figure out and complete intellegent parts
-
-
 
 #Let Omar do the Thingy
 
 
 #Board and board solution library
 
-bob =            [[0,0,0,3,2],
-                  [2,3,2,3,3],
-                  [0,3,1,1,1],
-                   [1,0,2,2,1],
-    ]
 
-carl =            [[0,3,2,1,1],
-                   [3,0,0,0,0],
-                   [3,1,1,1,2],
-                   [2,3,2,3,2],
-    ]
-
-solution_carl =   [["▶","◀","▼","▶","◀"],
-                   ["▼","▼","▲","▶","◀"],
-                   ["▲","▲","▼","▼","▼"],
-                   ["▶","◀","▲","▲","▲"],
-    ]
-
-joe = [[2,3,2,2,1],
-           [1,1,0,2,3],
-           [0,3,3,1,0],
-           [0,3,1,0,2], ]
-
-
-joes = [[2,3,2,2,1],
-                   [1,1,0,2,3],
-                   [0,3,3,1,0],
-                   [0,3,1,0,2], ]
 
 def mainmenu():
     menu = True
