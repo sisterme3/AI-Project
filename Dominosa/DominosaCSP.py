@@ -5,75 +5,48 @@ from csp import CSP,flatten,different_values_constraint
 import re
 from boardlibrary import bob
 
-rgbp = ['R', 'G', 'B', 'P']
+doublesix = ['0|0', '0|1', '0|2', '0|3', '0|4','0|5','0|6','1|1','1|2','1|3','1|4','1|5','1|6','2|2','2|3','2|4','2|5','2|6','3|3','3|4','3|5','3|6','4|4', '4|5','4|6', '5|5','5|6','6|6']
 
-# The 23 wards of Tokyo
 
-d2 = {'ADACHI' : rgbp, 'KATSU' : rgbp, 'EDOG' : rgbp, 'KOTO' : rgbp, 'CHUO': rgbp, 'SUMI': rgbp, 'TAITO':  rgbp, 'ARAK':   rgbp, 'KITA':   rgbp, 'BUNK':   rgbp, 'CHIY':   rgbp, 'MINA':   rgbp, 'SHIN':   rgbp,
-    'SHINA':  rgbp,
-    'OTA':    rgbp,
-    'MEGU':   rgbp,
-    'SETA':   rgbp,
-    'SUGI':   rgbp,
-    'NAKA':   rgbp,
-    'NERI':   rgbp,
-    'ITA':    rgbp,
-    'TOSHI':  rgbp,
-    'SHIB' :  rgbp,
+d2 = {1: doublesix,
+      2:  doublesix,
+      3:  doublesix,
+      4:  doublesix,
+      5:  doublesix,
+      6:  doublesix,
+      7:  doublesix,
+      8:  doublesix,
+      9:  doublesix,
+      10: doublesix,
+      11: doublesix,
       }
 
 v2 = d2.keys()
 
-n2 = {'ADACHI' : ['KATSU','SUMI','ARAK','KITA'],
-      'KATSU' : ['ADACHI', 'EDOG','SUMI'],
-      'EDOG' : ['KATSU', 'KOTO','SUMI'],
-      'KOTO' : ['EDOG','CHUO','SUMI'],
-      'CHUO':['KOTO','SUMI','MINA','CHIY','TAITO'],
-      'TAITO':['CHUO','SUMI','CHIY','BUNK','KITA','ARAK'],
-      'SUMI':['KATSU','EDOG','KOTO','CHUO','TAITO','ADACHI','ARAK'],
-      'ARAK': ['TAITO', 'BUNK', 'SUMI', 'ADACHI', 'KITA'],
-      'KITA': ['ADACHI', 'ARAK', 'BUNK', 'TOSHI', 'ITA','TAITO'],
-      'BUNK': ['ARAK', 'TAITO', 'CHIY', 'SHIN', 'TOSHI', 'KITA'],
-      'CHIY': ['CHUO', 'MINA', 'SHIN', 'BUNK', 'TAITO'],
-      'MINA': ['CHUO', 'CHIY', 'SHIN', 'SHIB', 'SHINA'],
-      'SHIN': ['MINA', 'CHIY', 'BUNK', 'TOSHI', 'NERI', 'NAKA', 'SHIB'],
-      'SHINA': ['MINA', 'SHIB', 'MEGU', 'OTA'],
-      'OTA': ['SHINA', 'MEGU', 'SETA'],
-      'MEGU': ['SHIB', 'MINA', 'SHINA', 'OTA', 'SETA', ],
-      'SETA': ['OTA', 'MEGU', 'SHIB', 'SUGI'],
-      'SUGI': ['SETA', 'NERI', 'NAKA', 'SHIB'],
-      'NAKA': ['SUGI', 'SHIB', 'SHIN', 'TOSHI', 'NERI'],
-      'NERI': ['TOSHI', 'NAKA', 'SUGI', 'SHIN', 'ITA'],
-      'ITA': ['KITA', 'NERI', 'TOSHI'],
-      'TOSHI': ['KITA', 'BUNK', 'ITA', 'NERI', 'NAKA', 'SHIN'],
-      'SHIB': ['NAKA', 'SHIN', 'SUGI', 'SETA', 'MEGU', 'SHINA', 'MINA'],}
-
+n2 = {1: [2,3,4,5,6,7,8,9,10,11],
+      2: [1,3,4,5,6,7,8,9,10,11],
+      3: [1,2,4,5,6,7,8,9,10,11],
+      4: [1,2,3,5,6,7,8,9,10,11],
+      5: [1,2,3,4,6,7,8,9,10,11],
+      6: [1,2,3,4,5,7,8,9,10,11],
+      7: [1,2,3,4,5,6,8,9,10,11],
+      8: [1,2,3,4,5,6,7,9,10,11],
+      9: [1,2,3,4,5,6,7,8,10,11],
+      10:[1,2,3,4,5,6,7,8,9,11],
+      11:[1,2,3,4,5,6,7,8,9,10],
+      }
 
 
 class Dominosa(CSP):
 
     def __init__(self, grid):
         """Hello"""
-
-        squares = iter(re.findall(r'\d|\.', grid))
-        domains = {var: [ch] if ch in '123456780' else '123456789'
-                   for var, ch in zip(flatten(self.rows), squares)}
+        domains = doublesix
 
 
-
-def constraint(A, a, B, b):
-    if A == B:      # e.g. NSW == NSW
-        return True
-
-    if a == b:      # e.g. WA = G and SA = G
-        return False
-
-    return True
+print(CSP.__init__( None, v2, doublesix, different_values_constraint))
 
 
-
-
-print(backtracking_search(c2, select_uassigned_variable=mrv,order_domain_values=mac, inference=forward_checking))
 
 
 #e.display(e.infer_assignment())
