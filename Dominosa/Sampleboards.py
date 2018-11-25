@@ -1,7 +1,8 @@
-import numpy as np
-from array import *
-from boardlibrary import bob, carl, joe, joes, solution_carl
+from boardlibrary import EasyDoesIt, EasyCarl, EasyJoe, AbsolutelyGenius,Mediumcarl,Mediumjoe,SuperHard,ReallyHard,Alittlebitharder,ActuallyHard
+
 #Possible domino pieces
+
+
 #def printvalidchoices():
 
 
@@ -14,12 +15,7 @@ from boardlibrary import bob, carl, joe, joes, solution_carl
 
 #def validplaces():
 
-#Figure out and complete intellegent parts
-
 #Let Omar do the Thingy
-
-
-#Board and board solution library
 
 
 
@@ -38,7 +34,7 @@ def mainmenu():
     print("     ")
     print("5. Play against the computer.")
     print("    ")
-    print("6. Play a Random board")
+    print("6. Demo")
     print("    ")
     print("7. Exit")
     print("    ")
@@ -48,15 +44,8 @@ def mainmenu():
         if int(selection) == 1:
             print("       ")
             print("Okay, pick a board")
+            printallboards()
             print("Type 0 to go back.")
-            print("Bob(Easy)")
-            prettyprintboards(bob)
-            print("          ")
-            print("Carl(Easy)")
-            prettyprintboards(carl)
-            print("          ")
-            print("Joe(Easy)")
-            prettyprintboards(joe)
             boardchoice = input("Select your board: ")
             boardselect(boardchoice)
             break
@@ -70,6 +59,7 @@ def mainmenu():
         elif int(selection) == 4:
             print("       ")
             print("Get ready to be amazed. What board do you want the computer to play")
+            print
             choice = input("Type 0 to return to the main menu")
             if int(choice) == 0:
                 mainmenu()
@@ -85,7 +75,8 @@ def mainmenu():
 
         elif int(selection) == 6:
             print("       ")
-            print("Get Ready......")
+            print("All Right! Welcome to the world of Dominosa")
+
             choice = input("Type 0 to return to the main menu")
             if int(choice) == 0:
                 mainmenu()
@@ -118,6 +109,26 @@ def prettyprintboards(array):
         for c in r:
             print(c, end=" ")
         print()
+
+
+
+
+def printallboards():
+    print('EasyDoesIt (Very Easy)')
+    print("        ")
+    prettyprintboards(EasyDoesIt)
+    print("        ")
+    print('EasyCarl (Very Easy)')
+    prettyprintboards(EasyCarl)
+    prettyprintboards(EasyJoe)
+    prettyprintboards(Mediumjoe)
+    prettyprintboards(Mediumcarl)
+    prettyprintboards(Alittlebitharder)
+    prettyprintboards(ActuallyHard)
+    prettyprintboards(SuperHard)
+    prettyprintboards(ReallyHard)
+    prettyprintboards(AbsolutelyGenius)
+
 
 def placedomino(x, y,w,v,array1):
     if x == w and y<v:
@@ -174,6 +185,11 @@ def boardselect(board):
         name = board
         prettyprintboards(joe)
         play(joe, name)
+
+    if board.lower() == 'harder':
+        name = board
+        prettyprintboards(harder)
+        play(harder, name)
 
 
 def printSolution(board):

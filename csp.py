@@ -257,6 +257,7 @@ def backtracking_search(csp,
     """
 
     def backtrack(assignment):
+        csp.moves+=1
         if len(assignment) == len(csp.variables):
             return assignment
         var = select_unassigned_variable(assignment, csp)
@@ -271,8 +272,10 @@ def backtracking_search(csp,
                 csp.restore(removals)
         csp.unassign(var, assignment)
         return None
-
+    csp.moves =0
     result = backtrack({})
+    print('This board took ' + str(csp.moves) + ' moves/assignments.')
+    print('Here is the answer!')
     assert result is None or csp.goal_test(result)
     return result
 
