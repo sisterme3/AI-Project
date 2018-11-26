@@ -4,10 +4,146 @@ from DominosaSolver import prettyprintboards
 import random
 
 
-def checkifdone(array):
-    return True
+def resetboards(name, pboard):
+
+    if name == 'Easy Does It':
+      pboard  =  [[2, 0, 0, 1],
+                  [0, 0, 1, 1],
+                  [2, 2, 1, 2],
+]
+    EasyJoe = [
+        [3, 3, 1, 1],
+        [5, 3, 2, 2],
+        [2, 5, 4, 1],
+    ]
+
+    EasyCarl = [
+    [5,0,5,3],
+    [5,6,6,6],
+    [3,0,2,0],
+    ]
+
+    Alittlebitharder = [[2, 1, 3, 2, 2],
+                        [0, 1, 3, 3, 1],
+                        [2, 0, 0, 2, 1],
+                        [0, 3, 1, 3, 0],
+     ]
+
+    MediumJoe = [[3, 1, 3, 0, 0],
+                 [3, 1, 2, 3, 2],
+                 [2, 0, 2, 3, 0],
+                 [0, 2, 1, 1, 1],
+                 ]
+
+    MediumCarl = [[0, 3, 2, 1, 1],
+                  [3, 0, 0, 0, 0],
+                  [3, 1, 1, 1, 2],
+                  [2, 3, 2, 3, 2],
+                  ]
+
+    Alittlebitharder = [[2, 1, 3, 2, 2],
+                        [0, 1, 3, 3, 1],
+                        [2, 0, 0, 2, 1],
+                        [0, 3, 1, 3, 0],
+                        ]
 
 
+    ActuallyHard = [[1, 3, 2, 3, 2, 0],
+                    [4, 3, 1, 4, 2, 4],
+                    [0, 4, 3, 4, 0, 2],
+                    [1, 3, 1, 0, 3, 1],
+                    [4, 2, 1, 2, 0, 0],
+                    ]
+    ReallyHard = [
+        [2, 1, 3, 1, 4, 4],
+        [2, 1, 2, 2, 0, 0],
+        [1, 4, 0, 3, 1, 4],
+        [4, 3, 3, 4, 0, 2],
+        [0, 1, 2, 3, 3, 0],
+    ]
+
+    SuperHard = [
+        [4, 3, 4, 3, 2, 3],
+        [1, 0, 3, 0, 0, 4],
+        [2, 2, 3, 4, 1, 0],
+        [4, 0, 1, 4, 3, 2],
+        [2, 1, 0, 1, 1, 2],
+
+    ]
+
+    AbsolutelyGenius = [
+        [0, 0, 6, 6, 4, 4, 2, 3],
+        [5, 2, 0, 1, 1, 5, 4, 6],
+        [1, 5, 0, 4, 4, 3, 2, 0],
+        [2, 2, 4, 6, 1, 6, 2, 0],
+        [6, 5, 4, 5, 3, 0, 1, 3],
+        [2, 3, 5, 4, 2, 6, 1, 3],
+        [5, 1, 5, 1, 6, 3, 3, 0],
+    ]
+
+
+def checkifdone(array, name, moves):
+    if name == "Easy Does It":
+       if array == EasyDoesIt_solution:
+         print("Congrats! You did it in" + str(moves))
+       elif array!= EasyDoesIt_solution:
+           print("Something's not right, but keep trying buddy.")
+
+    elif name == "Easy Carl ":
+        if array == EasyCarl_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != EasyCarl_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Easy Joe":
+        if array == EasyJoe_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != EasyJoe_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "A Little Bit Harder":
+        if array == Alittlebitharder_Solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != Alittlebitharder_Solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Medium Joe":
+        if array == MediumJoe_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != MediumJoe_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Medium Carl":
+        if array == MediumCarl_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != MediumCarl_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Actually Hard":
+        if array == ActuallyHard_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != ActuallyHard_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Super Hard":
+        if array == SuperHard_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != SuperHard_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Really Hard":
+        if array == ReallyHard_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != ReallyHard_solution:
+            print("Something's not right, but keep trying buddy.")
+
+    elif name == "Absolutely Genius":
+        if array == AbsolutelyGenius_solution:
+            print("Congrats! You did it in" + str(moves))
+        elif array != AbsolutelyGenius_solution:
+            print("Something's not right, but keep trying buddy.")
+
+#Stare at this
 def play(pboard, name, count=0):
     play = True
     while play:
@@ -34,22 +170,21 @@ def play(pboard, name, count=0):
                       print('Out of range!' 'Remember that this boards starts at 0 and ends at' + str(len(pboard) - 1))
                       choicev = input("Please reenter your y!")
                   placedomino(choicex, choicey, choicew, choicev, pboard)
+
         count += 1
         print('Number of current moves: ' + str(count))
-        response = input('Do you want to give up? y or n')
-        if response == 'y':
+        y = input('Do you think you are finished? y/n')
+        if y.lower() == 'y':
+            checkifdone(pboard,name, count)
+        response = input('Do you want to give up? y/n')
+        if response.lower() == 'y':
             printSolution(name)
-            r = input('Would you like to play again? y or n')
-            if r == 'n':
-                print('Thanks for playing')
+            r = input('Would you like to play again? y/n')
+            if r.lower() == 'n':
+                print('Thanks for playing!')
                 quit()
             elif r == 'y':
                 break
-
-           # if r == 'y':
-            #if r == 'n':
-             #   print('Goodbye! Come back soon!')
-              #  break
 
 
 def placedomino(x, y,w,v,array1):

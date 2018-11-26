@@ -7,27 +7,28 @@ from Play import play
 from DominosaSolver import solveboard
 from DominosaSolver import prettyprintboards
 
-"""Play - Add check if done! Add failsafes for '' and wrong inputs, add timers to make it pretty, spellcheck, Comment the code"""
+""" Add failsafes for '' and wrong inputs,, Comment the code"""
 """Board - Input domain pairs, pray that it works, if not MAKE it work"""
-"""We gotta end our suffering"""
+
+#Go for bad inputs
 def mainmenu():
     menu = True
     print("Hello! Welcome to Dominosa!!")
     print("What would you like to do!?")
     print("  ")
-    print("1. Play.")
+    print("(1) Play.")
     print("   ")
-    print("2. What is Dominosa?")
+    print("(2) What is Dominosa?")
     print("       ")
-    print("3. How to play.")
+    print("(3) How to play.")
     print("       ")
-    print("4. Watch the computer play.")
+    print("(4) Watch the computer play.")
     print("     ")
-    print("5. Demo")
+    print("(5) Demo")
     print("    ")
-    print("6. Exit")
+    print("(6) Exit")
     print("    ")
-    selection = input("Please enter your selection!       ")
+    selection = input("Please enter the number corresponding to your selection: ")
 
     while menu:
         if selection == '':
@@ -118,6 +119,7 @@ def mainmenu():
             break
 
 
+
 def printallboards(choice):
 
     if int(choice) == 1:
@@ -198,61 +200,79 @@ def boardselect(board):
         print(name)
         prettyprintboards(EasyDoesIt)
         print("This board is " + str(len(EasyDoesIt) - 1) + ' by ' + str(
-        len(EasyDoesIt[0]) - 1) + ' so you have to make sure your answers are in that range!')
+        len(EasyDoesIt[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(EasyDoesIt, name)
     elif int(board) == 2:
         print('       ')
         name = 'Easy Carl'
         print(name)
         prettyprintboards(EasyCarl)
+        print("This board is " + str(len(EasyCarl) - 1) + ' by ' + str(
+        len(EasyCarl[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(EasyCarl, name)
     elif int(board) == 3:
         print('       ')
         name = 'Easy Joe'
         print(name)
         prettyprintboards(EasyJoe)
+        print("This board is " + str(len(EasyJoe) - 1) + ' by ' + str(
+        len(EasyJoe[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(EasyJoe, name)
     elif int(board) == 4:
         print('       ')
         name = 'A Little Bit Harder'
         print(name)
         prettyprintboards(Alittlebitharder)
+        print("This board is " + str(len(Alittlebitharder) - 1) + ' by ' + str(
+        len(Alittlebitharder[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(Alittlebitharder, name)
     elif int(board) == 5:
         print('       ')
         name = 'Medium Joe'
         print(name)
         prettyprintboards(MediumJoe)
+        print("This board is " + str(len(MediumJoe) - 1) + ' by ' + str(
+        len(MediumJoe[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(MediumJoe, name)
     elif int(board) == 6:
         print('       ')
         name = 'Medium Carl'
         print(name)
         prettyprintboards(MediumCarl)
+        print("This board is " + str(len(MediumCarl) - 1) + ' by ' + str(
+        len(MediumCarl[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(MediumCarl, name)
     elif int(board)== 7:
         print('       ')
         name = 'Actually Hard'
         print(name)
         prettyprintboards(ActuallyHard)
+        print("This board is " + str(len(ActuallyHard) - 1) + ' by ' + str(
+        len(ActuallyHard[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(ActuallyHard, name)
     elif int(board) == 8:
         print('       ')
         name = 'Super Hard'
         print(name)
         prettyprintboards(SuperHard)
+        print("This board is " + str(len(SuperHard) - 1) + ' by ' + str(
+        len(SuperHard[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(SuperHard, name)
     elif int(board) == 9:
         print('       ')
         name = 'Really Hard'
         print(name)
         prettyprintboards(ReallyHard)
+        print("This board is " + str(len(ReallyHard) - 1) + ' by ' + str(
+        len(ReallyHard[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(ReallyHard, name)
     elif int(board) == 10:
         print('       ')
         name = 'Absolutely Genius'
         print(name)
         prettyprintboards(AbsolutelyGenius)
+        print("This board is " + str(len(AbsolutelyGenius) - 1) + ' by ' + str(
+        len(AbsolutelyGenius[0]) - 1) + ' so you have to make sure your answers are in that range(0 to the max range)!')
         play(AbsolutelyGenius, name)
     elif board == '':
         print('Bad input!!')
