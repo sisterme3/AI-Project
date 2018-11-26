@@ -1,12 +1,15 @@
-from boardlibrary import EasyDoesIt, EasyCarl, EasyJoe, AbsolutelyGenius,MediumCarl,MediumJoe,SuperHard,ReallyHard,Alittlebitharder,ActuallyHard, Demoboard
+from boardlibrary import EasyDoesIt, EasyCarl, EasyJoe, AbsolutelyGenius,MediumCarl,MediumJoe,SuperHard,ReallyHard,Alittlebitharder,ActuallyHard
 from boardlibrary import EasyDoesIt_solution, EasyCarl_solution, EasyJoe_solution, Alittlebitharder_Solution,ActuallyHard_solution,SuperHard_solution,MediumCarl_solution,MediumJoe_solution,ReallyHard_solution,AbsolutelyGenius_solution
 import random
+from Demo import demoplay
+import time
 from Play import play
 from DominosaSolver import solveboard
 from DominosaSolver import prettyprintboards
 
-
-
+"""Play - Add check if done! Add failsafes for '' and wrong inputs, add timers to make it pretty, spellcheck, Comment the code"""
+"""Board - Input domain pairs, pray that it works, if not MAKE it work"""
+"""We gotta end our suffering"""
 def mainmenu():
     menu = True
     print("Hello! Welcome to Dominosa!!")
@@ -50,13 +53,13 @@ def mainmenu():
                     choice = input('Input choice again!!')
                 else:
                    boardselect(boardchoice)
+                   mainmenu()
                 break
         elif int(selection) == 2:
             description()
         elif int(selection) == 3:
             print("       ")
             howtoplay()
-
         elif int(selection) == 4:
             print("       ")
             print("Get ready to be amazed.")
@@ -69,7 +72,6 @@ def mainmenu():
                 choice2 = input('What board do you want the computer to play?')
                 solveboard(choice2)
                 prettyprintboards(choice2)
-
             choice = input("Type 0 to return to the main menu")
             if int(choice) == 0:
                 mainmenu()
@@ -77,13 +79,14 @@ def mainmenu():
 
         elif int(selection) == 5:
             print("       ")
-            print("All Right! Welcome to the world of Dominosa")
+            print("All Right! Welcome to the world of Dominosa!")
             print("       ")
             print("Dominosa is a logic puzzle with simple rules and challenging solutions.")
             print("        ")
             print("The rules are simple. You have to find the location of all dominoes on the grid. "
                   "A domino is a pair of numbers."
                   " You can have only one of each pair.")
+            time.sleep(10)
             print("       ")
             print("Playing Dominosa consists of 5 easy steps.")
             print("1. Select a board")
@@ -92,10 +95,11 @@ def mainmenu():
             print("4. Repeat 2 and 3 for the second half.")
             print("5. Rinse and repeat!")
             print("       ")
-            print('Lets start small!')
-            print('Demoboard')
-            prettyprintboards(Demoboard)
-            play(Demoboard, "Demo")
+            time.sleep(10)
+            print("Let's start small!")
+            print("       ")
+            demoplay()
+            mainmenu()
             choice = input("Type 0 to return to the main menu")
             if int(choice) == 0 or '':
                 mainmenu()
@@ -190,61 +194,63 @@ def howtoplay():
 def boardselect(board):
     if int(board) == 1 :
         print('       ')
-        name = 'EasyDoesIt'
+        name = 'Easy Does It'
         print(name)
         prettyprintboards(EasyDoesIt)
+        print("This board is " + str(len(EasyDoesIt) - 1) + ' by ' + str(
+        len(EasyDoesIt[0]) - 1) + ' so you have to make sure your answers are in that range!')
         play(EasyDoesIt, name)
     elif int(board) == 2:
         print('       ')
-        name = 'EasyCarl'
+        name = 'Easy Carl'
         print(name)
         prettyprintboards(EasyCarl)
         play(EasyCarl, name)
     elif int(board) == 3:
         print('       ')
-        name = 'EasyJoe'
+        name = 'Easy Joe'
         print(name)
         prettyprintboards(EasyJoe)
         play(EasyJoe, name)
     elif int(board) == 4:
         print('       ')
-        name = 'Alittlebitharder'
+        name = 'A Little Bit Harder'
         print(name)
         prettyprintboards(Alittlebitharder)
         play(Alittlebitharder, name)
     elif int(board) == 5:
         print('       ')
-        name = 'MediumJoe'
+        name = 'Medium Joe'
         print(name)
         prettyprintboards(MediumJoe)
         play(MediumJoe, name)
     elif int(board) == 6:
         print('       ')
-        name = 'MediumCarl'
+        name = 'Medium Carl'
         print(name)
         prettyprintboards(MediumCarl)
         play(MediumCarl, name)
     elif int(board)== 7:
         print('       ')
-        name = 'ActuallyHard'
+        name = 'Actually Hard'
         print(name)
         prettyprintboards(ActuallyHard)
         play(ActuallyHard, name)
     elif int(board) == 8:
         print('       ')
-        name = 'SuperHard'
+        name = 'Super Hard'
         print(name)
         prettyprintboards(SuperHard)
         play(SuperHard, name)
     elif int(board) == 9:
         print('       ')
-        name = 'ReallyHard'
+        name = 'Really Hard'
         print(name)
         prettyprintboards(ReallyHard)
         play(ReallyHard, name)
     elif int(board) == 10:
         print('       ')
-        name = 'AbsolutelyGenius'
+        name = 'Absolutely Genius'
         print(name)
         prettyprintboards(AbsolutelyGenius)
         play(AbsolutelyGenius, name)
@@ -258,8 +264,4 @@ def boardselect(board):
                 boardselect(choice)
 
 
-
-
-
 mainmenu()
-

@@ -4,7 +4,6 @@ from DominosaSolver import prettyprintboards
 import random
 
 
-
 def checkifdone(array):
     return True
 
@@ -41,6 +40,12 @@ def play(pboard, name, count=0):
         if response == 'y':
             printSolution(name)
             r = input('Would you like to play again? y or n')
+            if r == 'n':
+                print('Thanks for playing')
+                quit()
+            elif r == 'y':
+                break
+
            # if r == 'y':
             #if r == 'n':
              #   print('Goodbye! Come back soon!')
@@ -70,7 +75,7 @@ def randomResponse(responsearray):
     print(random.choice(responsearray))
 
 def printSolution(board):
-        responsearray = ['Ooooh, you could do better than that!', 'You almost has it! Why!!', 'WOW. Nice try, N00B', ]
+        responsearray = ['Ooooh, you could have done better than that!', 'You almost had it! Why!!', 'WOW. Nice try, N00B', ]
         if board == "Easy Does It":
             print("Here is what you had...")
             prettyprintboards(EasyDoesIt)
