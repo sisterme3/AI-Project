@@ -1,0 +1,265 @@
+from boardlibrary import EasyDoesIt, EasyCarl, EasyJoe, AbsolutelyGenius,MediumCarl,MediumJoe,SuperHard,ReallyHard,Alittlebitharder,ActuallyHard, Demoboard
+from boardlibrary import EasyDoesIt_solution, EasyCarl_solution, EasyJoe_solution, Alittlebitharder_Solution,ActuallyHard_solution,SuperHard_solution,MediumCarl_solution,MediumJoe_solution,ReallyHard_solution,AbsolutelyGenius_solution
+import random
+from Play import play
+from DominosaSolver import solveboard
+from DominosaSolver import prettyprintboards
+
+
+
+def mainmenu():
+    menu = True
+    print("Hello! Welcome to Dominosa!!")
+    print("What would you like to do!?")
+    print("  ")
+    print("1. Play.")
+    print("   ")
+    print("2. What is Dominosa?")
+    print("       ")
+    print("3. How to play.")
+    print("       ")
+    print("4. Watch the computer play.")
+    print("     ")
+    print("5. Demo")
+    print("    ")
+    print("6. Exit")
+    print("    ")
+    selection = input("Please enter your selection!       ")
+
+    while menu:
+        if selection == '':
+            print('Bad input!')
+            mainmenu()
+        elif int(selection) == 0:
+            mainmenu()
+        elif int(selection) == 1:
+            print("       ")
+            choice = input("Okay, pick a difficulty:\n (1) Easy\n (2) Medium\n (3) Hard\n (4) Genius Level\n (0) To go back to the main menu")
+            if choice == '':
+                print("Bad input!")
+                choice = input('Input choice again!!')
+            elif int(choice) == 0:
+                print("       ")
+                mainmenu()
+                break
+            else:
+                printallboards(choice)
+                boardchoice = input("Select your board by entering the number that corresponds with the board: ")
+                if boardchoice == '':
+                    print("Bad input!")
+                    choice = input('Input choice again!!')
+                else:
+                   boardselect(boardchoice)
+                break
+        elif int(selection) == 2:
+            description()
+        elif int(selection) == 3:
+            print("       ")
+            howtoplay()
+
+        elif int(selection) == 4:
+            print("       ")
+            print("Get ready to be amazed.")
+            choice = input('What difficulty would you like it to play?\n (1) Easy\n (2) Medium\n (3) Hard\n (4) Genius Level')
+            if int(choice) >= 5 or choice == '':
+                print('Bad input!! Please enter your choice!')
+            else:
+                printallboards(choice)
+                print('      ')
+                choice2 = input('What board do you want the computer to play?')
+                solveboard(choice2)
+                prettyprintboards(choice2)
+
+            choice = input("Type 0 to return to the main menu")
+            if int(choice) == 0:
+                mainmenu()
+            break
+
+        elif int(selection) == 5:
+            print("       ")
+            print("All Right! Welcome to the world of Dominosa")
+            print("       ")
+            print("Dominosa is a logic puzzle with simple rules and challenging solutions.")
+            print("        ")
+            print("The rules are simple. You have to find the location of all dominoes on the grid. "
+                  "A domino is a pair of numbers."
+                  " You can have only one of each pair.")
+            print("       ")
+            print("Playing Dominosa consists of 5 easy steps.")
+            print("1. Select a board")
+            print("2. Enter the x values of where you want to place your first domino half ")
+            print("3. Enter the y values of where you want to place your first domino half ")
+            print("4. Repeat 2 and 3 for the second half.")
+            print("5. Rinse and repeat!")
+            print("       ")
+            print('Lets start small!')
+            print('Demoboard')
+            prettyprintboards(Demoboard)
+            play(Demoboard, "Demo")
+            choice = input("Type 0 to return to the main menu")
+            if int(choice) == 0 or '':
+                mainmenu()
+            break
+
+        elif int(selection) == 6:
+            menu = False
+            print("       ")
+            print("Goodbye!! Come back soon!!")
+            break
+
+        elif int(selection) >= 7:
+            print("       ")
+            print("Incorrect input! Try again, silly!")
+            mainmenu()
+            break
+
+
+def printallboards(choice):
+
+    if int(choice) == 1:
+        print('Here are the easy boards!')
+        print("        ")
+        print('(1) EasyDoesIt')
+        print("        ")
+        prettyprintboards(EasyDoesIt)
+        print("        ")
+        print('(2) EasyCarl')
+        prettyprintboards(EasyCarl)
+        print("        ")
+        print('(3) EasyJoe')
+        prettyprintboards(EasyJoe)
+    elif int(choice) == 2:
+        print('Here are the medium boards!')
+        print("        ")
+        print('(4) A little bit harder\n')
+        prettyprintboards(Alittlebitharder)
+        print("        ")
+        print('(5) Medium Joe \n')
+        prettyprintboards(MediumJoe)
+        print("        ")
+        print('(6) Medium Carl \n')
+        prettyprintboards(MediumCarl)
+    elif int(choice) == 3:
+        print('Here are the Hard boards!')
+        print("        ")
+        print('(7) Actually Hard \n')
+        prettyprintboards(ActuallyHard)
+        print("        ")
+        print('(8) Super Hard \n')
+        prettyprintboards(SuperHard)
+        print("        ")
+        print('(9) Really Hard\n')
+        prettyprintboards(ReallyHard)
+    elif int(choice) == 4:
+        print('Okay big shot, this is the genius board!')
+        print('       ')
+        print('(10) AbsolutelyGenius')
+        prettyprintboards(AbsolutelyGenius)
+    elif int(choice) >= 5:
+        wrong = True
+        while(wrong):
+         print('Please input the correct category (1) Easy, (2) Medium, (3)Hard, (4) Genius')
+         choice = input('Please input selection')
+         if int(choice) <=4:
+          wrong = False
+          printallboards(choice)
+
+
+def description():
+    print("       ")
+    print("Dominosa is a logic puzzle with simple rules and challenging solutions.")
+    print("        ")
+    print("The rules are simple. You have to find the location of all dominoes on the grid. "
+          "A domino is a pair of numbers."
+          " You can have only one of each pair.")
+    choice = input("Type 0 to return to the main menu")
+    if int(choice) == 0 or choice=='':
+        mainmenu()
+
+def howtoplay():
+    print("Playing Dominosa consists of 5 easy steps.")
+    print("1. Select a board")
+    print("2. Enter the x values of where you want to place your first domino half ")
+    print("3. Enter the y values of where you want to place your first domino half ")
+    print("4. Repeat 2 and 3 for the second half.")
+    print("5. Rinse and repeat!")
+    choice = input("Type 0 to return to the main menu")
+    if int(choice) == 0 or choice == '':
+        mainmenu()
+
+def boardselect(board):
+    if int(board) == 1 :
+        print('       ')
+        name = 'EasyDoesIt'
+        print(name)
+        prettyprintboards(EasyDoesIt)
+        play(EasyDoesIt, name)
+    elif int(board) == 2:
+        print('       ')
+        name = 'EasyCarl'
+        print(name)
+        prettyprintboards(EasyCarl)
+        play(EasyCarl, name)
+    elif int(board) == 3:
+        print('       ')
+        name = 'EasyJoe'
+        print(name)
+        prettyprintboards(EasyJoe)
+        play(EasyJoe, name)
+    elif int(board) == 4:
+        print('       ')
+        name = 'Alittlebitharder'
+        print(name)
+        prettyprintboards(Alittlebitharder)
+        play(Alittlebitharder, name)
+    elif int(board) == 5:
+        print('       ')
+        name = 'MediumJoe'
+        print(name)
+        prettyprintboards(MediumJoe)
+        play(MediumJoe, name)
+    elif int(board) == 6:
+        print('       ')
+        name = 'MediumCarl'
+        print(name)
+        prettyprintboards(MediumCarl)
+        play(MediumCarl, name)
+    elif int(board)== 7:
+        print('       ')
+        name = 'ActuallyHard'
+        print(name)
+        prettyprintboards(ActuallyHard)
+        play(ActuallyHard, name)
+    elif int(board) == 8:
+        print('       ')
+        name = 'SuperHard'
+        print(name)
+        prettyprintboards(SuperHard)
+        play(SuperHard, name)
+    elif int(board) == 9:
+        print('       ')
+        name = 'ReallyHard'
+        print(name)
+        prettyprintboards(ReallyHard)
+        play(ReallyHard, name)
+    elif int(board) == 10:
+        print('       ')
+        name = 'AbsolutelyGenius'
+        print(name)
+        prettyprintboards(AbsolutelyGenius)
+        play(AbsolutelyGenius, name)
+    elif board == '':
+        print('Bad input!!')
+        wrong =True
+        while wrong:
+            choice = input('Please enter a board')
+            if choice <=10 and choice>0:
+                wrong = False
+                boardselect(choice)
+
+
+
+
+
+mainmenu()
+
