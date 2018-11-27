@@ -255,13 +255,12 @@ def backtracking_search(csp,
                         inference=no_inference):
     """[Figure 6.5]
     """
-
     def backtrack(assignment):
-        csp.moves+=1
         if len(assignment) == len(csp.variables):
             return assignment
         var = select_unassigned_variable(assignment, csp)
         for value in order_domain_values(var, assignment, csp):
+            csp.moves += 1
             if 0 == csp.nconflicts(var, value, assignment):
                 csp.assign(var, value, assignment)
                 removals = csp.suppose(var, value)
@@ -272,7 +271,7 @@ def backtracking_search(csp,
                 csp.restore(removals)
         csp.unassign(var, assignment)
         return None
-    csp.moves =0
+    csp.moves = 0
     result = backtrack({})
     print('This board took ' + str(csp.moves) + ' moves/assignments.')
     print('Here is the answer!')

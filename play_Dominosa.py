@@ -1,4 +1,4 @@
-from boardlibrary import EasyDoesIt, EasyCarl, EasyJoe, AbsolutelyGenius,MediumCarl,MediumJoe,SuperHard,ReallyHard,Alittlebitharder,ActuallyHard
+from boardlibrary import EasyDoesIt, EasyCarl, EasyJoe, AbsolutelyGenius,MediumCarl,MediumJoe,SuperHard,ReallyHard,Alittlebitharder,ActuallyHard,Demoboard
 from boardlibrary import EasyDoesIt_solution, EasyCarl_solution, EasyJoe_solution, Alittlebitharder_Solution,ActuallyHard_solution,SuperHard_solution,MediumCarl_solution,MediumJoe_solution,ReallyHard_solution,AbsolutelyGenius_solution
 import random
 from Demo import demoplay
@@ -64,9 +64,13 @@ def mainmenu():
         elif int(selection) == 4:
             print("       ")
             print("Get ready to be amazed.")
-            choice = input('What difficulty would you like it to play?\n (1) Easy\n (2) Medium\n (3) Hard\n (4) Genius Level')
+            choice = input('What difficulty would you like it to play?\n (1) Easy\n (2) Medium\n (3) Hard\n (4) Genius Level\n (0) To go back to the main menu')
             if int(choice) >= 5 or choice == '':
                 print('Bad input!! Please enter your choice!')
+            elif int(choice) == 0:
+                print("       ")
+                mainmenu()
+                break
             else:
                 printallboards(choice)
                 print('      ')
@@ -124,6 +128,10 @@ def printallboards(choice):
 
     if int(choice) == 1:
         print('Here are the easy boards!')
+        print("        ")
+        print('(0) Demo Board')
+        print("        ")
+        prettyprintboards(Demoboard)
         print("        ")
         print('(1) EasyDoesIt')
         print("        ")

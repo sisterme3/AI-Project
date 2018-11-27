@@ -1,7 +1,48 @@
-from csp import CSP,different_values_constraint,lcv, mrv, backtracking_search,forward_checking,mac
-from boardlibrary import EasyDoesIt, EasyCarl,EasyJoe,MediumJoe,Alittlebitharder,MediumCarl, SuperHard, ActuallyHard,ReallyHard,AbsolutelyGenius
+from csp import CSP,different_values_constraint,lcv, mrv, backtracking_search,forward_checking,mac,first_unassigned_variable,no_inference,unordered_domain_values
+from boardlibrary import EasyDoesIt, EasyCarl,EasyJoe,MediumJoe,Alittlebitharder,MediumCarl, SuperHard, ActuallyHard,ReallyHard,AbsolutelyGenius,Demoboard
 from boardlibrary import prettyprintboards
 
+def constraints(A, a, B, b):
+    if A == B:      # e.g. NSW == NSW
+        return True
+
+    if a == b:      # e.g. WA = G and SA = G
+        return False
+
+    return True
+
+
+
+def demoboard():
+    print('Demo Board')
+    print(prettyprintboards(Demoboard))
+
+    Demoboard1 = ['0|0','0|2','0|2','0|2','0|0','2|2','0|0','0|2','0|1','1|2']
+
+    d2 = {     '1': Demoboard1,
+               '2': Demoboard1,
+               '3': Demoboard1,
+               '4': Demoboard1,
+               }
+
+    v2 = d2.keys()
+
+    n2 = {'1': ['2', '3', '4'],
+          '2': ['1', '3', '4'],
+          '3': ['1', '2', '4'],
+          '4': ['1', '2', '3'],
+        }
+
+    Dominosa2 = CSP(v2, d2, n2, constraints)
+
+
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa2)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa2, select_unassigned_variable=mrv, order_domain_values=unordered_domain_values, inference=no_inference)
 
 def solveEasyDoesIt():
     print('EasyDoesIt')
@@ -28,6 +69,13 @@ def solveEasyDoesIt():
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
+
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
     backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,inference=mac)
 
 
@@ -37,26 +85,31 @@ def solveEasyJoe():
 
     EasyJoe1 = ['3|3','3|5','2|5','3|5','2|5','3|3','3|5','1|3','2|3','4|5','1|2','2|4','1|1','2|2','1|4','1|2','1|2']
 
-    d2 = {1: EasyJoe1,
+    d3 = {1: EasyJoe1,
           2: EasyJoe1,
           3: EasyJoe1,
           4: EasyJoe1,
           5: EasyJoe1,
           6: EasyJoe1, }
 
-    v2 = d2.keys()
+    v3 = d3.keys()
 
-    n2 = {1: [2, 3, 4, 5, 6],
+    n3 = {1: [2, 3, 4, 5, 6],
           2: [1, 3, 4, 5, 6],
           3: [1, 2, 4, 5, 6],
           4: [1, 2, 3, 5, 6],
           5: [1, 2, 3, 4, 6],
           6: [1, 2, 3, 4, 5], }
 
-    Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
+    Dominosa1 = CSP(v3, d3, n3, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveEasyCarl():
@@ -83,8 +136,13 @@ def solveEasyCarl():
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveAlittle():
@@ -121,7 +179,13 @@ def solveAlittle():
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,  inference=forward_checking)
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveMediumJoe():
@@ -154,12 +218,17 @@ def solveMediumJoe():
           7: [1, 2,3, 4, 5, 6, 8, 9, 10],
           8: [1, 2, 3,4, 5, 6, 7, 9, 10],
           9: [1, 2, 3, 4, 5, 6, 7, 8, 10],
-          10: [1, 2, 3, 4, 5,6, 7, 8, 9],  }
+          10: [1, 2, 3, 4, 5,6, 7, 8, 9],}
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveMediumCarl():
@@ -191,12 +260,17 @@ def solveMediumCarl():
           7: [1, 2,3, 4, 5, 6, 8, 9, 10],
           8: [1, 2, 3,4, 5, 6, 7, 9, 10],
           9: [1, 2, 3, 4, 5, 6, 7, 8, 10],
-          10: [1, 2, 3, 4, 5,6, 7, 8, 9],  }
+          10: [1, 2, 3, 4, 5,6, 7, 8, 9],}
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveActually():
@@ -226,27 +300,32 @@ def solveActually():
 
     v2 = d2.keys()
 
-    n2 = {1: [2, 3, 4, 5, 6, 7, 8, 9, 10],
-          2: [1, 3, 4, 5, 6, 7, 8, 9, 10],
-          3: [1, 2, 4, 5, 6, 7, 8, 9, 10],
-          4: [1, 2, 3, 5, 6, 7, 8, 9, 10],
-          5: [1, 2, 3, 4, 6, 7, 8, 9, 10],
-          6: [1, 2, 3, 4, 5, 7, 8, 9, 10],
-          7: [1, 2,3, 4, 5, 6, 8, 9, 10],
-          8: [1, 2, 3,4, 5, 6, 7, 9, 10],
-          9: [1, 2, 3, 4, 5, 6, 7, 8, 10],
-          10: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-          11: Actually,
-          12: Actually,
-          13: Actually,
-          14: Actually,
-          15: Actually,
+    n2 = {1: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          2: [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          3: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          4: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          5: [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          6: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          7: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15],
+          8: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15],
+          9: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15],
+          10: [1, 2, 3, 4, 5, 6, 7, 8, 9,  11, 12, 13, 14, 15],
+          11: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15],
+          12: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15],
+          13: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15],
+          14: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15],
+          15: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,],
           }
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveReally():
@@ -275,27 +354,32 @@ def solveReally():
 
     v2 = d2.keys()
 
-    n2 = {1: [2, 3, 4, 5, 6],
-          2: [1, 3, 4, 5, 6],
-          3: [1, 2, 4, 5, 6],
-          4: [1, 2, 3, 5, 6],
-          5: [1, 2, 3, 4, 6],
-          6: [1, 2, 3, 4, 5],
-          7: Really,
-          8: Really,
-          9: Really,
-          10: Really,
-          11: Really,
-          12: Really,
-          13: Really,
-          14: Really,
-          15: Really,
+    n2 = {1: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          2: [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          3: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          4: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          5: [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          6: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          7: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15],
+          8: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15],
+          9: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15],
+          10: [1, 2, 3, 4, 5, 6, 7, 8, 9,  11, 12, 13, 14, 15],
+          11: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15],
+          12: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15],
+          13: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15],
+          14: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15],
+          15: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,],
           }
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveSuper():
@@ -324,21 +408,21 @@ def solveSuper():
 
     v2 = d2.keys()
 
-    n2 = {1: [2, 3, 4, 5, 6],
-          2: [1, 3, 4, 5, 6],
-          3: [1, 2, 4, 5, 6],
-          4: [1, 2, 3, 5, 6],
-          5: [1, 2, 3, 4, 6],
-          6: [1, 2, 3, 4, 5],
-          7: Super,
-          8: Super,
-          9: Super,
-          10: Super,
-          11: Super,
-          12: Super,
-          13: Super,
-          14: Super,
-          15: Super,
+    n2 = {1: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          2: [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          3: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          4: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          5: [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          6: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          7: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15],
+          8: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15],
+          9: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15],
+          10: [1, 2, 3, 4, 5, 6, 7, 8, 9,  11, 12, 13, 14, 15],
+          11: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15],
+          12: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15],
+          13: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15],
+          14: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15],
+          15: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,],
 
 
 
@@ -348,8 +432,13 @@ def solveSuper():
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,inference=None)
-
+    print("Backtracking Search with no heuristics")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("           ")
+    print("Backtracking Search with heuristics")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveGenius():
@@ -394,43 +483,51 @@ def solveGenius():
 
     v2 = d2.keys()
 
-    n2 = {1: [2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
-          2: [1, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
-          3: [1, 2, 4, 5, 6],
-          4: [1, 2, 3, 5, 6],
-          5: [1, 2, 3, 4, 6],
-          6: [1, 2, 3, 4, 5],
-          7: Genius,
-          8: Genius,
-          9: Genius,
-          10: Genius,
-          11: Genius,
-          12: Genius,
-          13: Genius,
-          14: Genius,
-          15: Genius,
-          16: Genius,
-          17: Genius,
-          18: Genius,
-          19: Genius,
-          20: Genius,
-          21: Genius,
-          22: Genius,
-          23: Genius,
-          24: Genius,
-          25: Genius,
-          26: Genius,
-          27: Genius,
-          28: Genius,
+    n2 = {1: [2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          2: [1, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          3: [1,2, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          4: [1, 2, 3, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          5: [1, 2,3, 4, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          6: [1,2, 3, 4, 5, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          7: [1,2, 3, 4, 5, 6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          8: [1,2, 3, 4, 5, 6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          9: [1,2, 3, 4, 5, 6,7,8,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          10: [1,2, 3, 4, 5, 6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          11: [1,2, 3, 4, 5, 6,7,8,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          12: [1,2, 3, 4, 5, 6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          13: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          14: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          15: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,16,17,18,19,20,21,22,23,24,25,26,27,28],
+          16: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28],
+          17: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,18,19,20,21,22,23,24,25,26,27,28],
+          18: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24,25,26,27,28],
+          19: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,24,25,26,27,28],
+          20: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28],
+          21: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,25,26,27,28],
+          22: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28],
+          23: [1,2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,25,26,27,28],
+          24: [1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28],
+          25: [1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28],
+          26: [1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28],
+          27: [1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,28],
+          28: [1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27],
           }
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,inference=forward_checking)
+    print("Backtracking Search with no heuristics:")
+    print("           ")
+    backtracking_search(Dominosa1)
+    print("            ")
+    print("Backtracking Search with heuristics:")
+    print("            ")
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 
 def solveboard(array):
-    if int(array) == 1:
+    if int(array) == 0:
+        demoboard()
+    elif int(array) == 1:
         solveEasyDoesIt()
     elif int(array) == 2:
         solveEasyJoe()
