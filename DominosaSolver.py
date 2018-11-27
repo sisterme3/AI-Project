@@ -1,4 +1,4 @@
-from csp import CSP,different_values_constraint,lcv, mrv, backtracking_search,forward_checking
+from csp import CSP,different_values_constraint,lcv, mrv, backtracking_search,forward_checking,mac
 from boardlibrary import EasyDoesIt, EasyCarl,EasyJoe,MediumJoe,Alittlebitharder,MediumCarl, SuperHard, ActuallyHard,ReallyHard,AbsolutelyGenius
 from boardlibrary import prettyprintboards
 
@@ -7,7 +7,7 @@ def solveEasyDoesIt():
     print('EasyDoesIt')
     print(prettyprintboards(EasyDoesIt))
 
-    EasyDoesIt1 = []
+    EasyDoesIt1 = ['0|2','0|2','0|2','0|0','2|2','0|0','0|2','0|0','0|1','1|2','0|1','1|1','0|1','1|1','1|1','1|2','1|2']
 
     d2 = {     1: EasyDoesIt1,
                2: EasyDoesIt1,
@@ -28,14 +28,14 @@ def solveEasyDoesIt():
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,inference=forward_checking))
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,inference=mac)
 
 
 def solveEasyJoe():
     print('Easy Joe')
     print(prettyprintboards(EasyJoe))
 
-    EasyJoe1 = []
+    EasyJoe1 = ['3|3','3|5','2|5','3|5','2|5','3|3','3|5','1|3','2|3','4|5','1|2','2|4','1|1','2|2','1|4','1|2','1|2']
 
     d2 = {1: EasyJoe1,
           2: EasyJoe1,
@@ -63,7 +63,7 @@ def solveEasyCarl():
     print('Easy Carl')
     print(prettyprintboards(EasyCarl))
 
-    EasyCarl1 = []
+    EasyCarl1 = ['5|5','3|5','0|5','5|6','0|3','3|6','0|6','0|6','0|5','6|6','0|2','0|6','5|6','2|6','3|5','6|6','0|2']
 
     d2 = {1: EasyCarl1,
           2: EasyCarl1,
@@ -91,7 +91,7 @@ def solveAlittle():
     print('A Little Bit Harder')
     print(prettyprintboards(Alittlebitharder))
 
-    ALittle1 = []
+    ALittle1 = ['1|2','0|2','0|2','0|2','0|1','0|2','0|3','2|3','2|2','0|3','0|1','1|1','0|1','0|3','1|3','1|3','0|0', '1|3','2|3','1|3','1|2','3|3','0|3','0|1','2|3','3|3','0|2','1|3','2|3','1|2','1|1']
 
     d2 = {1: ALittle1,
           2: ALittle1,
@@ -121,15 +121,14 @@ def solveAlittle():
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
 
-    print(backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,
-                              inference=forward_checking))
+    backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv,  inference=forward_checking)
 
 
 def solveMediumJoe():
     print('Medium Joe')
     print(prettyprintboards(MediumJoe))
 
-    MediumJoe1 = []
+    MediumJoe1 = ['1|3','3|3','2|3','0|2','1|3','0|2','0|2','1|1','0|1','0|2','0|1','1|3','1|2','0|2','1|2','2|3','2|2','1|2','0|3','2|3','2|3','1|1','0|3','3|3','1|3','0|0','2|3','0|3','0|2','0|2','1|1']
 
     d2 = {1: MediumJoe1,
           2: MediumJoe1,
@@ -167,7 +166,7 @@ def solveMediumCarl():
     print('Medium Carl')
     print(prettyprintboards(MediumCarl))
 
-    MediumCarl1 = []
+    MediumCarl1 = ['0|3','0|3','3|3','2|3','0|3','1|3','2|3','0|3','0|1','1|3','2|3','0|0','1|1','2|3','0|2','0|1','1|2','1|2','0|0','1|1','2|3','0|1','0|1','1|3','1|1','0|0','1|2','2|3','0|1','0|2','2|2']
 
     d2 = {1: MediumCarl1,
           2: MediumCarl1,
@@ -204,7 +203,8 @@ def solveActually():
     print('Actually Hard')
     print(prettyprintboards(ActuallyHard))
 
-    Actually = []
+    Actually = ['1|3','0|4','1|4','1|3','2|4','3|4','2|3','1|3','1|3','1|2','1|3','2|3','3|4','1|2','4|4','0|2','2|4','0|3','2|2','0|3','0|2','0|2','0|0','2|4','0|1',
+                '1|4','0|1','3|4','0|4','3|3','3|4','2|3','3|4','1|2','1|3','1|1','1|4','0|1','3|4','0|4','2|3','0|4','0|2','0|2','0|3','2|4','1|3','0|4','1|2']
 
     d2 = {1: Actually,
           2: Actually,
@@ -235,7 +235,12 @@ def solveActually():
           7: [1, 2,3, 4, 5, 6, 8, 9, 10],
           8: [1, 2, 3,4, 5, 6, 7, 9, 10],
           9: [1, 2, 3, 4, 5, 6, 7, 8, 10],
-          10: [1, 2, 3, 4, 5,6, 7, 8, 9],
+          10: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          11: Actually,
+          12: Actually,
+          13: Actually,
+          14: Actually,
+          15: Actually,
           }
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
@@ -248,7 +253,8 @@ def solveReally():
     print('Really Hard')
     print(prettyprintboards(ReallyHard))
 
-    Really = []
+    Really = ['1|2','2|3','1|2','1|4','0|4','1|2','1|4','3|4','0|1','1|1','1|4','3|4','1|3','1|3','1|2','0|4','3|3','1|2','2|3','0|2','0|3','2|3','1|3','0|3','2|3',
+              '1|2','2|2','3|4','3|4','1|4','0|2','1|3','0|4','3|3','0|4','0|1','0|1','0|3','4|4','0|0','1|4','0|2','0|3','0|4','0|4','2|4','0|2','2|2','3|4']
 
     d2 = {1: Really,
           2: Really,
@@ -265,12 +271,6 @@ def solveReally():
           13: Really,
           14: Really,
           15: Really,
-
-
-
-
-
-
           }
 
     v2 = d2.keys()
@@ -292,7 +292,8 @@ def solveSuper():
     print('Super Hard')
     print(prettyprintboards(SuperHard))
 
-    Super = []
+    Super = ['3|4','1|4','1|2','2|4','2|4','0|1','2|2','1|3','1|2','0|3','0|2','0|2','0|1','2|3','1|2','0|2','0|1','1|3','3|4','0|4','0|2','2|2','0|3','4|4','1|2',
+             '2|3','0|0','1|4','3|4','1|1','0|2','0|1','0|4','1|3','2|3','0|4','0|1','2|3','3|4','0|3','2|3','0|1','3|4','0|3','3|4','1|4','0|1','0|4','1|4']
 
     d2 = {1: Super,
           2: Super,
@@ -361,14 +362,6 @@ def solveGenius():
           26: Genius,
           27: Genius,
           28: Genius,
-
-
-
-
-
-
-
-
           }
 
     v2 = d2.keys()

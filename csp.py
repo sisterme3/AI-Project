@@ -276,6 +276,7 @@ def backtracking_search(csp,
     result = backtrack({})
     print('This board took ' + str(csp.moves) + ' moves/assignments.')
     print('Here is the answer!')
+    print(result)
     assert result is None or csp.goal_test(result)
     return result
 
