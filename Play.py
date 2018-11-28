@@ -143,7 +143,7 @@ def checkifdone(array, name, moves):
         elif array != AbsolutelyGenius_solution:
             print("Something's not right, but keep trying buddy.")
 
-#Stare at this
+
 def play(pboard, name, count=0):
     play = True
     while play:

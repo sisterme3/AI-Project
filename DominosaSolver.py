@@ -17,7 +17,7 @@ def demoboard():
     print('Demo Board')
     print(prettyprintboards(Demoboard))
 
-    Demoboard1 = ['0|0','0|2','0|2','0|2','0|0','2|2','0|0','0|2','0|1','1|2']
+    Demoboard1 = ['2|4','1|6','3|6','3|4','2|6','4|4','2|3','1|3','4|6','4|3']
 
     d2 = {     '1': Demoboard1,
                '2': Demoboard1,
@@ -33,7 +33,7 @@ def demoboard():
           '4': ['1', '2', '3'],
         }
 
-    Dominosa2 = CSP(v2, d2, n2, constraints)
+    Dominosa2 = CSP(v2, d2, n2, different_values_constraint)
 
 
     print("Backtracking Search with no heuristics")
@@ -83,7 +83,7 @@ def solveEasyJoe():
     print('Easy Joe')
     print(prettyprintboards(EasyJoe))
 
-    EasyJoe1 = ['3|3','3|5','2|5','3|5','2|5','3|3','3|5','1|3','2|3','4|5','1|2','2|4','1|1','2|2','1|4','1|2','1|2']
+    EasyJoe1 = ['3|3','4|5','2|5','1|1','2|5','3|3','2|3','1|2','3|5','3|5','1|3','2|4','3|5','2|2','1|4','1|2','1|2']
 
     d3 = {1: EasyJoe1,
           2: EasyJoe1,
@@ -116,7 +116,7 @@ def solveEasyCarl():
     print('Easy Carl')
     print(prettyprintboards(EasyCarl))
 
-    EasyCarl1 = ['5|5','3|5','0|5','5|6','0|3','3|6','0|6','0|6','0|5','6|6','0|2','0|6','5|6','2|6','3|5','6|6','0|2']
+    EasyCarl1 = ['5|5','3|6','6|6','6|6','0|2','0|3','3|6','0|6','0|6','0|5','5|6','0|6','5|6','2|6','3|5','5|6','0|2']
 
     d2 = {1: EasyCarl1,
           2: EasyCarl1,
@@ -309,12 +309,12 @@ def solveActually():
           7: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15],
           8: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15],
           9: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15],
-          10: [1, 2, 3, 4, 5, 6, 7, 8, 9,  11, 12, 13, 14, 15],
+          10: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15],
           11: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15],
           12: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15],
           13: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15],
           14: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15],
-          15: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,],
+          15: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
           }
 
     Dominosa1 = CSP(v2, d2, n2, different_values_constraint)
@@ -529,9 +529,9 @@ def solveboard(array):
         demoboard()
     elif int(array) == 1:
         solveEasyDoesIt()
-    elif int(array) == 2:
-        solveEasyJoe()
     elif int(array) == 3:
+        solveEasyJoe()
+    elif int(array) == 2:
         solveEasyCarl()
     elif int(array) == 4:
         solveAlittle()
@@ -539,9 +539,9 @@ def solveboard(array):
         solveMediumJoe()
     elif int(array) == 6:
         solveMediumCarl()
-    elif int(array) == 7:
-        solveSuper()
     elif int(array) == 8:
+        solveSuper()
+    elif int(array) == 7:
         solveActually()
     elif int(array) == 9:
         solveReally()

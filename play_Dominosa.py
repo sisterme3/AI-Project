@@ -114,6 +114,7 @@ def mainmenu():
             menu = False
             print("       ")
             print("Goodbye!! Come back soon!!")
+            quit()
             break
 
         elif int(selection) >= 7:
@@ -121,8 +122,6 @@ def mainmenu():
             print("Incorrect input! Try again, silly!")
             mainmenu()
             break
-
-
 
 def printallboards(choice):
 
