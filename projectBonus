@@ -1,1 +1,25 @@
 
+C Level (75) 
+-Completed all neccessary requirements
+Writing Quality (up to 10)
+
+    Clarity
+    Thorough background
+    Enough information to reproduce the work
+
+-Within our paper, we clearly explain what dominosa is and how it relates to a CSP. We also give a through background on the real
+world applications and usage of CSP and also detail our process to ensure that we give enough information for the project to be 
+reproduced.
+
+Pretty, intuitive UI (max. 5)
+
+-Although there aren't any flashing graphics, the program is still easily for the user to operate intuitively
+
+Robust on many problem instances (max. 10)
+ 
+- This dominosa solver/game has 11 different boards to solve with 1 demoboard, 3 easy boards, 3 medium boards, 3 hard boards, and 
+1 Extra hard board. 
+
+Smarter than casual user (max. 5)
+- By using our backtracking search algorithm, we found that our Dominosa solver, with heuristic could solve any problem better than
+the casual player. 
