@@ -7,8 +7,7 @@ from Play import play
 from DominosaSolver import solveboard
 from DominosaSolver import prettyprintboards
 
-""" Add failsafes for '' and wrong inputs,, Comment the code"""
-"""Board - Input domain pairs, pray that it works, if not MAKE it work"""
+
 
 #Go for bad inputs
 def mainmenu():
