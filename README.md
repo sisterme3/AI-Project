@@ -3,5 +3,5 @@ AI final project and project for SURS
 
 
   
-Requirements: You know, I don't know, like I really don't know. I think it should work.
+Requirements: There really shouldn't be any new modules that you have to import. 
 Run Class is playDominosa.py
