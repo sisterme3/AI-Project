@@ -8,4 +8,4 @@ Requirements: There really shouldn't be any new modules that you have to import,
 -Run Class is playDominosa.py
 
 
--Project Bonuses are within projectBonus
+-Project Bonuses are within info.txt
