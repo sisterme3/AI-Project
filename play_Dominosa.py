@@ -7,10 +7,12 @@ from Play import play
 from DominosaSolver import solveboard
 from DominosaSolver import prettyprintboards
 
-""" Add failsafes for '' and wrong inputs,, Comment the code"""
-"""Board - Input domain pairs, pray that it works, if not MAKE it work"""
+"""This file is the run file of this entire project"""
 
-#Go for bad inputs
+
+"""This method is the UI hub for the player to select what they want to do within the game."""
+
+
 def mainmenu():
     menu = True
     print("Hello! Welcome to Dominosa!!")
@@ -123,6 +125,10 @@ def mainmenu():
             mainmenu()
             break
 
+
+""" This method prints every board within a specified difficulty. """
+
+
 def printallboards(choice):
 
     if int(choice) == 1:
@@ -178,6 +184,8 @@ def printallboards(choice):
           printallboards(choice)
 
 
+"""This method prints out the description of the Dominosa"""
+
 def description():
     print("       ")
     print("Dominosa is a logic puzzle with simple rules and challenging solutions.")
@@ -189,6 +197,10 @@ def description():
     if int(choice) == 0 or choice=='':
         mainmenu()
 
+
+"""This method prints out how to play a game"""
+
+
 def howtoplay():
     print("Playing Dominosa consists of 5 easy steps.")
     print("1. Select a board")
@@ -199,6 +211,9 @@ def howtoplay():
     choice = input("Type 0 to return to the main menu")
     if int(choice) == 0 or choice == '':
         mainmenu()
+
+
+"""This method selects a board based on the user's input and plays that particular board."""
 
 def boardselect(board):
     if int(board) == 1 :

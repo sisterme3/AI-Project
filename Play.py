@@ -3,84 +3,9 @@ from boardlibrary import EasyDoesIt_solution, EasyCarl_solution, EasyJoe_solutio
 from DominosaSolver import prettyprintboards
 import random
 
+""""The play class. This class has all the methods that relate to interactive gameplay. """
 
-def resetboards(name, pboard):
-
-    if name == 'Easy Does It':
-      pboard  =  [[2, 0, 0, 1],
-                  [0, 0, 1, 1],
-                  [2, 2, 1, 2],
-]
-    EasyJoe = [
-        [3, 3, 1, 1],
-        [5, 3, 2, 2],
-        [2, 5, 4, 1],
-    ]
-
-    EasyCarl = [
-    [5,0,5,3],
-    [5,6,6,6],
-    [3,0,2,0],
-    ]
-
-    Alittlebitharder = [[2, 1, 3, 2, 2],
-                        [0, 1, 3, 3, 1],
-                        [2, 0, 0, 2, 1],
-                        [0, 3, 1, 3, 0],
-     ]
-
-    MediumJoe = [[3, 1, 3, 0, 0],
-                 [3, 1, 2, 3, 2],
-                 [2, 0, 2, 3, 0],
-                 [0, 2, 1, 1, 1],
-                 ]
-
-    MediumCarl = [[0, 3, 2, 1, 1],
-                  [3, 0, 0, 0, 0],
-                  [3, 1, 1, 1, 2],
-                  [2, 3, 2, 3, 2],
-                  ]
-
-    Alittlebitharder = [[2, 1, 3, 2, 2],
-                        [0, 1, 3, 3, 1],
-                        [2, 0, 0, 2, 1],
-                        [0, 3, 1, 3, 0],
-                        ]
-
-
-    ActuallyHard = [[1, 3, 2, 3, 2, 0],
-                    [4, 3, 1, 4, 2, 4],
-                    [0, 4, 3, 4, 0, 2],
-                    [1, 3, 1, 0, 3, 1],
-                    [4, 2, 1, 2, 0, 0],
-                    ]
-    ReallyHard = [
-        [2, 1, 3, 1, 4, 4],
-        [2, 1, 2, 2, 0, 0],
-        [1, 4, 0, 3, 1, 4],
-        [4, 3, 3, 4, 0, 2],
-        [0, 1, 2, 3, 3, 0],
-    ]
-
-    SuperHard = [
-        [4, 3, 4, 3, 2, 3],
-        [1, 0, 3, 0, 0, 4],
-        [2, 2, 3, 4, 1, 0],
-        [4, 0, 1, 4, 3, 2],
-        [2, 1, 0, 1, 1, 2],
-
-    ]
-
-    AbsolutelyGenius = [
-        [0, 0, 6, 6, 4, 4, 2, 3],
-        [5, 2, 0, 1, 1, 5, 4, 6],
-        [1, 5, 0, 4, 4, 3, 2, 0],
-        [2, 2, 4, 6, 1, 6, 2, 0],
-        [6, 5, 4, 5, 3, 0, 1, 3],
-        [2, 3, 5, 4, 2, 6, 1, 3],
-        [5, 1, 5, 1, 6, 3, 3, 0],
-    ]
-
+"""Checks if board is completed"""
 
 def checkifdone(array, name, moves):
     if name == "Easy Does It":
@@ -143,6 +68,8 @@ def checkifdone(array, name, moves):
         elif array != AbsolutelyGenius_solution:
             print("Something's not right, but keep trying buddy.")
 
+""" The play method, checks the input of the user and corrects them if they input a number incorrect. 
+ (Even though I've added a million failsafes, someone probably could still break it.) :( """
 
 def play(pboard, name, count=0):
     play = True
@@ -186,7 +113,7 @@ def play(pboard, name, count=0):
             elif r == 'y':
                 break
 
-
+"""This method places a domino based on the direction of the domino piece."""
 def placedomino(x, y,w,v,array1):
     if x == w and y<v:
         array1[int(x)][int(y)] = "▶"
@@ -205,9 +132,12 @@ def placedomino(x, y,w,v,array1):
         array1[int(w)][int(v)] = "▼"
         prettyprintboards(array1)
 
+"""Prints random responses to the player quiting a board"""
 
 def randomResponse(responsearray):
     print(random.choice(responsearray))
+
+"""Prints the solution of the selected board"""
 
 def printSolution(board):
         responsearray = ['Ooooh, you could have done better than that!', 'You almost had it! Why!!', 'WOW. Nice try, N00B', ]

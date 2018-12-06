@@ -2,6 +2,10 @@ from csp import CSP,different_values_constraint,lcv, mrv, backtracking_search,fo
 from boardlibrary import EasyDoesIt, EasyCarl,EasyJoe,MediumJoe,Alittlebitharder,MediumCarl, SuperHard, ActuallyHard,ReallyHard,AbsolutelyGenius,Demoboard
 from boardlibrary import prettyprintboards
 
+"""This file solves each individual puzzle with the Backtracking Search Algorithm"""
+
+"""This method compares two variable together to check they are the same."""
+
 def constraints(A, a, B, b):
     if A == B:      # e.g. NSW == NSW
         return True
@@ -12,6 +16,7 @@ def constraints(A, a, B, b):
     return True
 
 
+"""The following boards are all mini CSP that solve each board within the game using the Backtracking Search Algorithm provided in the CSP file"""
 
 def demoboard():
     print('Demo Board')
@@ -522,6 +527,10 @@ def solveGenius():
     print("Backtracking Search with heuristics:")
     print("            ")
     backtracking_search(Dominosa1, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
+
+
+"""This method takes the boardnumber input from the play_
+Dominosa class and solves the respective board using the methods above"""
 
 
 def solveboard(array):

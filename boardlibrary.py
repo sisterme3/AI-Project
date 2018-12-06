@@ -1,3 +1,7 @@
+"""The library of boards that can be played within the game."""
+
+
+
 
 Demoboard = [[1,3,4,6],
              [6,2,4,3],
@@ -163,6 +167,7 @@ AbsolutelyGenius_solution = [
 ]
 
 
+"""Allows for the boards to be pretty-printed"""
 
 def prettyprintboards(array):
     for r in array:

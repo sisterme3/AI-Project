@@ -3,10 +3,19 @@ from boardlibrary import Demoboard, Demoboard_solution
 from Play import placedomino
 import time
 
+"""This file prints a extremely restricted demo to show the user how the game is played"""
+
+
+
+
+
+"""A demo restricted version of the checkifdone method in the play file"""
 def checkifdone(array, array1):
     if array == array1:
         return True
 
+
+"""The entire demo of the game based on the demo board. """
 def demoplay():
     print('Demoboard')
 
